@@ -1,16 +1,10 @@
 #!/usr/bin/python3
-def get_ponderated_promedium(scores):
-    list_promediums = list(map(lambda a: a[0] * a[1], scores))
-    return sum(list_promediums)
-
-
-def get_sum_weight(scores):
-    list_weights = list(map(lambda a: a[1], scores))
-    return sum(list_weights)
-
-
 def weight_average(my_list=[]):
-    if len(my_list) == 0:
+    if not my_list:
         return 0
-    else:
-        average = get_p
+    numerator = 0
+    denominator = 0
+    for i in my_list:
+        numerator += i[0] * i[1]
+        denominator += i[1]
+    return numerator / denominator
