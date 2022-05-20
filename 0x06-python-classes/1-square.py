@@ -5,7 +5,9 @@ sets its size.
 """
 
 
-class Square:
+class Square():
+    """Defines a square."""
+
     def __init__(self, size):
         """Sets the necessary attributes for the Square object.
         Args:
