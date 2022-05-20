@@ -7,6 +7,7 @@ use of the builtin print function. There's also an area method that returns
 the area of the square, another one that handles the print of the square.
 """
 
+
 class Square():
     """Defines a square."""
     def __init__(self, size=0, position=(0, 0)):

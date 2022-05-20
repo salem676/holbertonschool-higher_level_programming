@@ -4,6 +4,7 @@ This module contains methods about the creation and hendling of
 SinglyLinkedList and Node objects.
 """
 
+
 class Node():
     """Defines a node of a singly linked list."""
     def __init__(self, data, next_node=None):
