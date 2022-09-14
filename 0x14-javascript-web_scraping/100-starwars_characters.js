@@ -1,29 +1,14 @@
 #!/usr/bin/node
 
 const request = require('request');
-const film = process.argv[2];
-let url = 'http://swapi.co/api/people/';
+const starWarsUri = 'https://swapi-api.hbtn.io/api/films/'.concat(process.argv[2]);
 
-function filmcharacters (film, url) {
-  request(url, function (err, response, body) {
-    if (err) {
-      console.log(err);
-    } else if (response.statusCode === 200) {
-      let jsonobj = JSON.parse(body);
-      let people = jsonobj.results;
-      for (let i in people) {
-        for (let j in people[i].films) {
-          if (people[i].films[j].includes(film)) {
-            console.log(people[i].name);
-          }
-        }
-      }
-      if (jsonobj.next !== null) {
-        filmcharacters(film, jsonobj.next);
-      }
-    } else {
-      console.log('An error occured. Status code: ' + response.statusCode);
-    }
-  });
-}
-filmcharacters(film, url);
+request(starWarsUri, function (_err, _res, body) {
+  const characters = JSON.parse(body).characters;
+
+  for (let i = 0; i < characters.length; ++i) {
+    request(characters[i], function (_cErr, _cRes, cBody) {
+      console.log(JSON.parse(cBody).name);
+    });
+  }
+});
